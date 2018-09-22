@@ -29,7 +29,7 @@
                 "2"
             ],
             "defaultValue": "0"
-        },        
+        },
         "repoUrl": {
             "type": "string"
         },
@@ -59,16 +59,12 @@
             "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "empty"
         },
         "properties": {
-            "serverFarmId": "[parameters('hostingPlanName')]",
-            "siteConfig": {
-              "appSettings": []
-            },
-        
-Error: Parse error on line 65:
-...         },        },        "resource
-----------------------^
-Expecting 'STRING'
-},
+          "serverFarmId": "[parameters('hostingPlanName')]",
+          "siteConfig": {
+            "appSettings": []
+          }
+        },
+
         "resources": [{
             "apiVersion": "2015-08-01",
             "name": "web",
