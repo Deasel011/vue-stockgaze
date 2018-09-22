@@ -1,12 +1,14 @@
 <template>
     <div class="dashboard">
-
+      <growth-stock/>
     </div>
 </template>
 
 <script>
+import GrowthStock from './GrowthStock'
 export default {
-  name: 'dashboard'
+  name: 'dashboard',
+  components: {GrowthStock}
 }
 </script>
 

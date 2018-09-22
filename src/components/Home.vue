@@ -14,5 +14,7 @@ export default {
 </script>
 
 <style scoped>
-
+.home img{
+  margin-left: -1.6em;
+}
 </style>
