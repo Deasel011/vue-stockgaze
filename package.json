@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js"
   },
+  "license": "Apache",
   "dependencies": {
     "vue": "^2.5.2",
     "vue-graph": "^0.4.1",
