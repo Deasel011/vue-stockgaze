@@ -1,6 +1,10 @@
 <template>
-  <div class="growth">
-
+  <div class="growth" v-if="growths!=null">
+    <ul>
+      <li v-for="g in growths">
+        {{g.symbol}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -13,7 +17,8 @@ export default {
     return {growths: null}
   },
   mounted () {
-    ApiHelper.GetBestGrowth().then(res => (this.growths = res))
+    ApiHelper.GetBestGrowth().then(res => (this.growths = res.data))
+    console.log(this.growths)
   }
 }
 </script>
