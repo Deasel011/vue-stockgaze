@@ -1,12 +1,13 @@
 <template>
     <div class="authentication">
-      <button>Log out</button>
+      <p>{{this.profile.given_name}}</p>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'Authentication'
+  name: 'Authentication',
+  props: ['profile']
 }
 </script>
 
