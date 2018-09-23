@@ -5,14 +5,15 @@
 </template>
 
 <script>
+import ApiHelper from '../utils/ApiHelper'
+
 export default {
   name: 'GrowthStock',
   data: function () {
-    return {growths: [
-      {symbol: 'WEED', exchange: 'TSX', yearSlope: 0.6},
-      {symbol: 'RY', exchange: 'TSX', yearSlope: 0.3},
-      {symbol: 'APH', exchange: 'TSX', yearSlope: 0.4}
-    ]}
+    return {growths: null}
+  },
+  mounted () {
+    ApiHelper.GetBestGrowth().then(res => (this.growths = res))
   }
 }
 </script>

@@ -12,10 +12,12 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js",
-    "push":"moveToWrapper.sh"
+    "push": "moveToWrapper.sh"
   },
   "license": "Apache",
   "dependencies": {
+    "adal-angular": "^1.0.17",
+    "axios": "^0.18.0",
     "vue": "^2.5.2",
     "vue-graph": "^0.4.1",
     "vue-router": "^3.0.1"

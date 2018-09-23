@@ -1,10 +1,6 @@
 <template>
     <div class="authentication">
-      <form>
-        <input id="username" placeholder="username"/>
-        <input id="password" placeholder="password"/>
-        <input type="submit" value="OK"/>
-      </form>
+      <button>Log out</button>
     </div>
 </template>
 

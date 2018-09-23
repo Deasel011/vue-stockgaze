@@ -1,16 +1,31 @@
 <template>
-  <div id="app">
-    <authentication/>
+  <div id="app" v-if="isAuthenticated" >
+    <authentication profile="getUserProfile"/>
       <router-view>
       </router-view>
   </div>
 </template>
 
 <script>
-import Authentication from '@/components/Authentication'
+import authentication from './authentication'
+import Authentication from './components/Authentication'
+// console.log(authentication.getUserProfile())
 export default {
   name: 'StockGaze',
-  components: {Authentication}
+  components: {Authentication},
+  computed: {
+    isAuthenticated () {
+      return authentication.isAuthenticated()
+    },
+    getUserProfile () {
+      return authentication.getUserProfile()
+    }
+  },
+  methods: {
+    logOut () {
+      authentication.signOut()
+    }
+  }
 }
 </script>
 
