@@ -17,11 +17,6 @@
       <guideline :tooltip-y="true"></guideline>
     </graph-line>
     </div>
-    <ul>
-      <li v-for="g in growths">
-        {{g.symbol}}
-      </li>
-    </ul>
   </div>
 </template>
 
