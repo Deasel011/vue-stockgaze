@@ -3,7 +3,7 @@ import AuthenticationContext from 'adal-angular/lib/adal.js'
 const config = {
   tenant: '67f280f1-d3ff-4db5-8ad7-26868314eeae',
   clientId: '26441b7e-f4fb-4691-8cf2-52793af115d0',
-  redirectUri: 'https://stockgaze.azurewebsites.net/',
+  redirectUri: 'http://localhost:8080/',//'https://stockgaze.azurewebsites.net/',
   cacheLocation: 'localStorage'
 }
 
