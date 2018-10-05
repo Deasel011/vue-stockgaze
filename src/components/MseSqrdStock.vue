@@ -1,7 +1,7 @@
 <template>
-  <div class="growth" v-if="growths!=null">
-    <div  v-for="g in growths" :key="g.symbol">
-      <p>{{g.exchange+ ':' + g.symbol + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slope value:'+g.jsonIndicators.best_slope.value.toFixed(4)}}</p>
+  <div class="mse" v-if="msesqrd!=null">
+    <div  v-for="g in msesqrd" :key="g.symbol">
+      <p>{{g.exchange+ ':' + g.symbol + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mse squared value:'+g.jsonIndicators.highest_mse_sqrd.value.toFixed(4)}}</p>
       <p>Last update: {{g.json1year.slice(-1)[0].m_start.substr(0,10)}}</p>
     <graph-line
                 :width="600"
@@ -15,9 +15,10 @@
                 :values="[
             g.json1year.map(x=>x.m_close)
         ]">
-      <!--<note :text="g.exchange+ ':' + g.symbol + ' Slope value:'+g.jsonIndicators.best_slope.value.toFixed(4)"></note>-->
+      <!--<note :text="g.exchange+ ':' + g.symbol + '  Mse squared value:'+g.jsonIndicators.highest_mse_sqrd.value.toFixed(4)"></note>-->
       <guideline :tooltip-y="true"></guideline>
     </graph-line>
+      <hr/>
     </div>
   </div>
 </template>
@@ -31,14 +32,13 @@
   import GuidelineWidget from 'vue-graph/src/widgets/guideline'
 
   export default {
-    name: 'GrowthStock',
+    name: 'MseSqrdStock',
     data: function () {
-      return {growths: null}
+      return {msesqrd: null}
     },
     mounted() {
-      ApiHelper.GetBestGrowth().then(res => {
-        (this.growths = res.data);
-        console.log(this.growths);
+      ApiHelper.GetHighestMseSqrd().then(res => {
+        (this.msesqrd = res.data);
       })
     },
     components: {
@@ -56,13 +56,13 @@
       g_max: function (array) {
         array = array.map(x=>x.m_close);
         return Math.max(...array);
-      },
-      test: function(){
-        return "bob"
       }
     }
   }
 </script>
 
 <style scoped>
+  p{
+    margin-bottom: 0;
+  }
 </style>
