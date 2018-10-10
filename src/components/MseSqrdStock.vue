@@ -1,7 +1,7 @@
 <template>
   <div class="mse" v-if="msesqrd!=null">
     <div  v-for="g in msesqrd" :key="g.symbol">
-      <p>{{g.exchange+ ':' + g.symbol + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mse squared value:'+g.jsonIndicators.highest_mse_sqrd.value.toFixed(4)}}</p>
+      <p>{{g.exchange+ ':' + g.symbol + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mse squared value:'+g.highestMseSqrdValue.toFixed(4)}}</p>
       <p>Last update: {{g.json1year.slice(-1)[0].m_start.substr(0,10)}}</p>
     <graph-line
                 :width="600"

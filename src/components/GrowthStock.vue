@@ -1,7 +1,7 @@
 <template>
   <div class="growth" v-if="growths!=null">
     <div  v-for="g in growths" :key="g.symbol">
-      <p>{{g.exchange+ ':' + g.symbol + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slope value:'+g.jsonIndicators.best_slope.value.toFixed(4)}}</p>
+      <p>{{g.exchange+ ':' + g.symbol + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slope value:'+g.bestSlopeValue.toFixed(4)}}</p>
       <p>Last update: {{g.json1year.slice(-1)[0].m_start.substr(0,10)}}</p>
     <graph-line
                 :width="600"
