@@ -15,7 +15,7 @@
                 :values="[
             g.json1year.map(x=>x.m_close)
         ]">
-      <note :text="'1 year'"></note>
+      <note :text="'1 year - daily tick on close'"></note>
       <guideline :tooltip-y="true"></guideline>
     </graph-line>
       <graph-line
@@ -30,7 +30,7 @@
         :values="[
             g.json6months.map(x=>x.m_close)
         ]">
-        <note :text="'6 months'"></note>
+        <note :text="'6 months - 4 hours tick'"></note>
         <guideline :tooltip-y="true"></guideline>
       </graph-line>
         <graph-line
@@ -45,7 +45,7 @@
           :values="[
             g.json3weeks.map(x=>x.m_close)
         ]">
-          <note :text="'3 weeks'"></note>
+          <note :text="'3 weeks - 15 minutes tick'"></note>
           <guideline :tooltip-y="true"></guideline>
         </graph-line>
     </div>
