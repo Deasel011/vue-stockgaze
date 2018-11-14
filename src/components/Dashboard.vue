@@ -2,8 +2,10 @@
     <div class="dashboard">
       <button v-on:click="toggleGrowth" id="growthbutton">Best Growths</button>
       <button v-on:click="toggleHMse" id="hmsebutton">Highest Mse Squared</button>
+      <button v-on:click="toggleLever" id="leverbutton">Leveraged ETFs</button>
       <growth-stock v-if="growthShown"/>
       <mse-sqrd-stock v-if="hMseShown"/>
+      <leveraged v-if="leveragedShown"/>
       <footer><h3>Stockgaze</h3>
       <p>Created by: Deasel011</p></footer>
     </div>
@@ -12,12 +14,13 @@
 <script>
 import GrowthStock from './GrowthStock'
 import MseSqrdStock from './MseSqrdStock'
+import Leveraged from './Leveraged'
 
 export default {
   name: 'dashboard',
-  components: {GrowthStock,MseSqrdStock},
+  components: {GrowthStock,MseSqrdStock,Leveraged},
   data: function () {
-    return {growthShown: false,hMseShown:false}
+    return {growthShown: false,hMseShown:false,leveragedShown:false}
   },
   methods:{
     toggleGrowth:function(event){
@@ -38,11 +41,22 @@ export default {
         document.getElementById("hmsebutton").classList.remove("toggled")
       }
     },
+    toggleLever:function(event){
+      this.hideAllTabs();
+      this.leveragedShown = !this.leveragedShown;
+      if(this.leveragedShown){
+        document.getElementById("leverbutton").classList.add("toggled")
+      }else{
+        document.getElementById("leverbutton").classList.remove("toggled")
+      }
+    },
     hideAllTabs:function(){
       this.growthShown = false;
       this.hMseShown = false;
+      this.leveragedShown = false;
       document.getElementById("hmsebutton").classList.remove("toggled");
-      document.getElementById("growthbutton").classList.remove("toggled")
+      document.getElementById("growthbutton").classList.remove("toggled");
+      document.getElementById("leverbutton").classList.remove("toggled");
     }
   }
 }
