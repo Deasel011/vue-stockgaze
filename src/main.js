@@ -4,8 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import authentication from './authentication'
+import VueJsonp from 'vue-jsonp'
+
 
 Vue.config.productionTip = false
+
+Vue.use(VueJsonp, 5000);
 
 authentication.initialize().then(_ => {
   /* eslint-disable no-new */

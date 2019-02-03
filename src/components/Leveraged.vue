@@ -3,6 +3,7 @@
     <div  v-for="g in lever" :key="g.symbol">
       <p>{{g.exchange+ ':' + g.symbol}}</p>
       <p>Last update: {{g.json1year.slice(-1)[0].m_start.substr(0,10)}}</p>
+      <p>Description: {{g.leveragedExtra}}</p>
     <graph-line
                 :width="450"
                 :height="300"
@@ -68,7 +69,7 @@
     mounted() {
       ApiHelper.GetLeveraged().then(res => {
         (this.lever = res.data);
-        console.log(this.lever);
+        console.log(JSON.parse(this.lever[1].leveragedExtra));
       })
     },
     components: {
@@ -93,6 +94,7 @@
     }
   }
 </script>
+
 
 <style scoped>
 </style>

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/Home'
 import Dashboard from '@/components/Dashboard'
+import StockBreakdown from '@/components/StockBreakdown'
 import authentication from '../authentication'
 
 Vue.use(Router)
@@ -31,6 +32,11 @@ const router = new Router({
       meta: {
         requiresAuthentication: true
       }
+    },{
+    path:'/breakdown',
+      name:'Breakdown',
+      component:StockBreakdown,
+      meta:{requiresAuthentication:true}
     }
   ]
 })

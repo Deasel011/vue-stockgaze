@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-if="isAuthenticated" >
-    <authentication :profile="getUserProfile"/>
+    <top-bar :profile="getUserProfile"/>
       <router-view>
       </router-view>
   </div>
@@ -8,10 +8,11 @@
 
 <script>
 import authentication from './authentication'
-import Authentication from './components/Authentication'
+import TopBar from './components/TopBar'
+
 export default {
   name: 'StockGaze',
-  components: {Authentication},
+  components: {TopBar},
   computed: {
     isAuthenticated () {
       return authentication.isAuthenticated()
