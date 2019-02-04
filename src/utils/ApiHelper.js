@@ -22,7 +22,6 @@ class ApiHelper {
     return 'https://api.iextrading.com/1.0/'
   }
 
-  static GetIEX
 }
 
 export default ApiHelper
