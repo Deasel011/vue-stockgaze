@@ -1,16 +1,49 @@
 <template>
-  <div class="topnav">
-    <form id="tickerSearch" action="/breakdown">
-      <input placeholder="Ticker here" name="ticker"/>
-      <button type="submit">Get Quote Breakdown</button>
-    </form>
+  <b-navbar toggleable="md" type="dark" variant="dark">
 
-    <p id="profileName">{{this.profile.given_name}}</p>
+    <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-  </div>
+    <b-navbar-brand href="#">StockGaze</b-navbar-brand>
+
+    <b-collapse is-nav id="nav_collapse">
+
+      <b-navbar-nav class="ml-auto">
+
+        <b-nav-form inline action="/breakdown">
+          <b-form-input size="sm" class="mr-sm-2" type="text" name="ticker" placeholder="Ticker here"/>
+          <b-button size="sm" class="my-2 my-sm-0" type="submit">Get Quote Breakdown</b-button>
+        </b-nav-form>
+
+        <b-nav-item-dropdown right>
+          <!-- Using button-content slot -->
+          <template slot="button-content">
+            <em>{{this.profile.given_name}}</em>
+          </template>
+          <b-dropdown-item href="#" disabled>Profile</b-dropdown-item>
+          <b-dropdown-item href="#" disabled>Signout</b-dropdown-item>
+        </b-nav-item-dropdown>
+
+      </b-navbar-nav>
+
+    </b-collapse>
+  </b-navbar>
+
+    <!--<div class="topnav">
+      <form id="tickerSearch" action="/breakdown">
+        <input placeholder="Ticker here" name="ticker"/>
+        <button type="submit">Get Quote Breakdown</button>
+      </form>
+
+      <p id="profileName">{{this.profile.given_name}}</p>
+
+    </div>-->
+
 </template>
 
 <script>
+  import 'bootstrap/dist/css/bootstrap.css'
+  import 'bootstrap-vue/dist/bootstrap-vue.css'
+
   export default {
     name: 'TopBar',
     props: ['profile']

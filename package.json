@@ -17,8 +17,11 @@
   "dependencies": {
     "adal-angular": "^1.0.17",
     "axios": "^0.18.0",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "highcharts": "^7.0.2",
     "vue": "^2.5.2",
     "vue-graph": "^0.4.1",
+    "vue-highcharts": "^0.1.0",
     "vue-jsonp": "^0.1.8",
     "vue-router": "^3.0.1"
   },
