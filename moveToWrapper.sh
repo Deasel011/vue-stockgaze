@@ -7,3 +7,4 @@ cp static "C:\Users\Philippedesp08089209\source\repos\StockGazeWrapper\StockGaze
 cp package.json "C:\Users\Philippedesp08089209\source\repos\StockGazeWrapper\StockGazeWrapper\ClientApp"
 cp index.html "C:\Users\Philippedesp08089209\source\repos\StockGazeWrapper\StockGazeWrapper\ClientApp"
 cp .eslintrc.js "C:\Users\Philippedesp08089209\source\repos\StockGazeWrapper\StockGazeWrapper\ClientApp"
+cp .postcssrc.js "C:\Users\Philippedesp08089209\source\repos\StockGazeWrapper\StockGazeWrapper\ClientApp"
