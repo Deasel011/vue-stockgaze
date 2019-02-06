@@ -62,8 +62,8 @@
         <b-tab title="Daily">
           <div class="w-100">
 
-            <div class="row">
-              <div class="col-3">Last Sale Price:<br><b>{{real_time_data.lastSalePrice}}</b></div>
+            <div class="row" v-if="real_time_data">
+              <div class="col-3">Last Sale Price:<br><b>{{real_time_data.lastSalePrice||0}}</b></div>
               <div class="col-3">Last Sale Size:<br>{{real_time_data.lastSaleSize}}</div>
               <div class="col-3">Volume:<br>{{real_time_data.volume}}</div>
               <div class="col-3">Market %:<br>{{real_time_data.marketPercent}}</div>
