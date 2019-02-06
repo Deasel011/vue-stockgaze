@@ -130,7 +130,7 @@
         this.getNearRealTimeQuote();
 
 
-
+        this.realTimeTimer = setInterval(function(){self.getNearRealTimeQuote()},5000)
         this.candleSticksTimer = setInterval(function(){self.getDynamicData()}, 60000)
       }
     },
@@ -168,7 +168,6 @@
           this.quote = json.quote;
           this.bids = json.bids;
           this.asks = json.asks;
-          console.log(json);
         }).catch(err => {
           alert("Could not get data " + err.toString())
         })
@@ -190,7 +189,6 @@
       getFinancialsData() {
         this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/financials', {}).then(json => {
           this.financials = json.financials;
-          console.log(this.financials);
         }).catch(err => {
           alert("Could not get data " + err.toString())
         })
@@ -302,8 +300,6 @@
       getDynamicData() {
         this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/chart/dynamic', {}).then(json => {
           this.dynamic = json.data;
-          console.log("Getting dynamic data");
-          console.log(this.dynamic);
 
           let candles = [],
             volume = [],
@@ -374,7 +370,7 @@
           this.realTimeTimer=null;
         }else{
           this.candleSticksTimer = setInterval(function(){self.getDynamicData()}, 60000);
-          this.realTimeTimer = setInterval(function(){self.getDynamicData()}, 5000);
+          this.realTimeTimer = setInterval(function(){self.getNearRealTimeQuote()}, 5000);
         }
         this.syncActivated();
       },
@@ -383,7 +379,6 @@
       },
       getNearRealTimeQuote(){
         this.$jsonp('https://api.iextrading.com/1.0/tops?symbols=' + this.ticker, {}).then(json => {
-          console.log(json);
           this.real_time_data = json[0];
         }).catch(err => {
           alert("Could not get data " + err.toString())
