@@ -63,9 +63,10 @@
           <div class="w-100">
 
             <div class="row">
-              <div class="col-3">AJKSND</div>
-              <div class="col-3">ASJKLDH</div>
-              <div class="col-3">CVESGE</div>
+              <div class="col-3">Last Sale Price:<br><b>{{real_time_data.lastSalePrice}}</b></div>
+              <div class="col-3">Last Sale Size:<br>{{real_time_data.lastSaleSize}}</div>
+              <div class="col-3">Volume:<br>{{real_time_data.volume}}</div>
+              <div class="col-3">Market %:<br>{{real_time_data.marketPercent}}</div>
             </div>
             <div class="row">
               <div class="col-12">
@@ -97,7 +98,8 @@
     name: "StockBreakdown",
     data: function () {
       return {
-        timer: null,
+        candleSticksTimer: null,
+        realTimeTimer:null,
         display: null,
         formatter: Formatter,
         ticker: new URLSearchParams(window.location.search).get('ticker'),
@@ -111,10 +113,12 @@
         logo_url: "",
         chart_options: null,
         candlestick_options : null,
-        dynamic_sync:true
+        dynamic_sync:true,
+        real_time_data:null
       }
     },
     created() {
+      const self = this;
       if (this.ticker) {
         this.getDashboardTab();
         this.getDynamicData();
@@ -123,7 +127,11 @@
         this.getCompanyData();
         this.getFinancialsData();
         this.getHistoricalData("1y");
-        this.timer = setInterval(function(){self.getDynamicData()}, 60000)
+        this.getNearRealTimeQuote();
+
+
+
+        this.candleSticksTimer = setInterval(function(){self.getDynamicData()}, 60000)
       }
     },
     methods: {
@@ -310,7 +318,6 @@
               this.dynamic[i]["low"], // low
               this.dynamic[i]["close"] // close
             ]);
-console.log(candles);
             volume.push([
               Date.parse(this.dynamic[i]["date"]), // the date
               this.dynamic[i]["volume"] // the volume
@@ -339,6 +346,9 @@ console.log(candles);
             title: {
               text: this.ticker.toLocaleUpperCase()+' Candlesticks'
             },
+            tooltip:{
+              split:true
+            },
 
             series: [{
               type: 'candlestick',
@@ -357,16 +367,27 @@ console.log(candles);
       },
       toggleDataSync() {
         const self = this;
-        if(this.timer){
-          clearInterval(this.timer);
-          this.timer = null;
+        if(this.candleSticksTimer){
+          clearInterval(this.candleSticksTimer);
+          clearInterval(this.realTimeTimer);
+          this.candleSticksTimer = null;
+          this.realTimeTimer=null;
         }else{
-          this.timer = setInterval(function(){self.getDynamicData()}, 60000)
+          this.candleSticksTimer = setInterval(function(){self.getDynamicData()}, 60000);
+          this.realTimeTimer = setInterval(function(){self.getDynamicData()}, 5000);
         }
         this.syncActivated();
       },
       syncActivated(){
-        this.dynamic_sync = !!this.timer;
+        this.dynamic_sync = !!this.candleSticksTimer;
+      },
+      getNearRealTimeQuote(){
+        this.$jsonp('https://api.iextrading.com/1.0/tops?symbols=' + this.ticker, {}).then(json => {
+          console.log(json);
+          this.real_time_data = json[0];
+        }).catch(err => {
+          alert("Could not get data " + err.toString())
+        })
       }
     }
   }
