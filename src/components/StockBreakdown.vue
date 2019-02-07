@@ -307,17 +307,29 @@
             i = 0;
 
           for (i; i < dataLength; i += 1) {
+            if(this.dynamic[i]["minute"]){
+              this.dynamic[i]["date"] =
+                this.dynamic[i]["date"].substring(0,4)
+                +"-"+this.dynamic[i]["date"].substring(4,6)
+                +"-"+this.dynamic[i]["date"].substring(6,8)
+                +"T"+this.dynamic[i]["minute"]
+            }
+
+            if(parseInt(this.dynamic[i]["low"])<0){
+              this.dynamic[i]["low"] = Math.min(parseInt(this.dynamic[i]["open"]),parseInt(this.dynamic[i]["close"]));
+              if(this.dynamic[i]["low"] === null){
+                continue;
+              }
+            }
+
             candles.push([
-              Date.parse(this.dynamic[i]["date"]), // the date
+              Date.parse(this.dynamic[i]["date"])-18000000, // the date
               this.dynamic[i]["open"], // open
               this.dynamic[i]["high"], // high
               this.dynamic[i]["low"], // low
               this.dynamic[i]["close"] // close
             ]);
-            volume.push([
-              Date.parse(this.dynamic[i]["date"]), // the date
-              this.dynamic[i]["volume"] // the volume
-            ]);
+
           }
 
           let options = {
@@ -341,9 +353,6 @@
 
             title: {
               text: this.ticker.toLocaleUpperCase()+' Candlesticks'
-            },
-            tooltip:{
-              split:true
             },
 
             series: [{
