@@ -8,11 +8,14 @@
     <b-collapse is-nav id="nav_collapse">
 
       <b-navbar-nav class="ml-auto">
+        <b-nav-item href="/ipo">IPOs</b-nav-item>
+
 
         <b-nav-form inline action="/breakdown">
           <b-form-input size="sm" class="mr-sm-2" type="text" name="ticker" placeholder="Ticker here"/>
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Get Quote Breakdown</b-button>
         </b-nav-form>
+
 
         <b-nav-item-dropdown right>
           <!-- Using button-content slot -->

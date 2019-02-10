@@ -1,24 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/Home'
 import Dashboard from '@/components/Dashboard'
 import StockBreakdown from '@/components/StockBreakdown'
 import authentication from '../authentication'
+import IPO from '@/components/IPO'
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
-  routes: [
-    {
-      path: '/hello',
-      name: 'HelloWorld',
-      component: HelloWorld,
-      meta: {
-        requiresAuthentication: true
-      }
-    }, {
+  routes: [{
       path: '/',
       name: 'Home',
       component: Home,
@@ -37,9 +29,14 @@ const router = new Router({
       name:'Breakdown',
       component:StockBreakdown,
       meta:{requiresAuthentication:true}
+    },{
+    path:'/ipo',
+      name:'IPO',
+      component:IPO,
+      meta:{requiresAuthentication:true}
     }
   ]
-})
+});
 
 // Global route guard
 router.beforeEach((to, from, next) => {
