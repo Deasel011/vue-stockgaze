@@ -218,78 +218,78 @@
           }
 
           let options = {
+            rangeSelector: {
+              selected: 2
+            },
+
             yAxis: [{
-              labels: {
-                align: 'left'
-              },
-              height: '80%',
+              height: '55%',
               resize: {
                 enabled: true
+              },
+              labels: {
+                align: 'right',
+                x: -3
+              },
+              title: {
+                text: this.ticker.toLocaleUpperCase()
               }
             }, {
+              top: '55%',
+              height: '25%',
               labels: {
-                align: 'left'
+                align: 'right',
+                x: -3
               },
+              offset: 0,
+              title: {
+                text: 'MACD'
+              }
+            },{
               top: '80%',
               height: '20%',
-              offset: 0
-            }],
-            tooltip: {
-              shape: 'square',
-              headerShape: 'callout',
-              borderWidth: 0,
-              shadow: false,
-              positioner: function (width, height, point) {
-                let chart = this.chart,
-                  position;
-
-                if (point.isHeader) {
-                  position = {
-                    x: Math.max(
-                      // Left side limit
-                      chart.plotLeft,
-                      Math.min(
-                        point.plotX + chart.plotLeft - width / 2,
-                        // Right side limit
-                        chart.chartWidth - width - chart.marginRight
-                      )
-                    ),
-                    y: point.plotY
-                  };
-                } else {
-                  position = {
-                    x: point.series.chart.plotLeft,
-                    y: point.series.yAxis.top - chart.plotTop
-                  };
-                }
-
-                return position;
+              labels: {
+                align: 'right',
+                x: -3
+              },
+              offset: 0,
+              title: {
+                text: 'STOC'
               }
+            }],
+
+            title: {
+              text: this.ticker.toLocaleUpperCase() +' Stock Chart'
             },
+
             series: [{
               type: 'ohlc',
               id: this.ticker + '-ohlc',
-              name: this.ticker.toLocaleUpperCase() + ' Stock Price',
-              data: ohlc
+              name: this.ticker.toLocaleUpperCase() +' Stock Price',
+              data: ohlc,
+              zIndex: 1
+            // }, {
+            //   type: 'pivotpoints',
+            //   linkedTo: this.ticker + '-ohlc',
+            //   zIndex: 0,
+            //   lineWidth: 1,
+            //   dataLabels: {
+            //     overflow: 'none',
+            //     crop: false,
+            //     y: 4,
+            //     style: {
+            //       fontSize: 9
+            //     }
+            //   }
             }, {
-              type: 'column',
-              id: this.ticker + '-volume',
-              name: this.ticker.toLocaleUpperCase() + ' Volume',
-              data: volume,
-              yAxis: 1
-            }],
-            responsive: {
-              rules: [{
-                condition: {
-                  maxWidth: 1140
-                },
-                chartOptions: {
-                  rangeSelector: {
-                    inputEnabled: false
-                  }
-                }
-              }]
-            }
+              type: 'macd',
+              yAxis: 1,
+              linkedTo: this.ticker + '-ohlc',
+            },{
+              type: 'stochastic',
+              yAxis: 2,
+              linkedTo: this.ticker + '-ohlc',
+            }]
           };
 
           this.chart_options = options;
@@ -416,7 +416,7 @@
     }
   }
 
-  footer {
+  f67ooter {
     border-top: 1px black solid;
     bottom: 0;
     left: 0;

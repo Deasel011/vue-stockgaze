@@ -15,11 +15,16 @@ import loadStock from 'highcharts/modules/stock.js';
 import loadMap from 'highcharts/modules/map.js';
 import loadGantt from 'highcharts/modules/gantt.js';
 import loadDrilldown from 'highcharts/modules/drilldown.js';
+import loadDragPanes from 'highcharts/modules/drag-panes';
+import loadIndicators from 'highcharts/indicators/indicators-all';
+
 
 loadStock(Highcharts);
 loadMap(Highcharts);
 loadGantt(Highcharts);
 loadDrilldown(Highcharts);
+loadDragPanes(Highcharts);
+loadIndicators(Highcharts);
 
 Vue.config.productionTip = false
 
