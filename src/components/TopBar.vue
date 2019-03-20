@@ -10,14 +10,15 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-item href="/ipo">IPOs</b-nav-item>
 
-        <b-nav-form inline action="/breakdown">
-          <div class="autocomplete" style="width: 190px">
+        <b-nav-form inline action="/breakdown" autocomplete="off">
+          <Autocomplete/>
+          <!--<div class="autocomplete" style="width: 190px">
             <b-form-input id="autocomplete_input" autocomplete="off" size="sm" class="mr-sm-2" type="text" name="ticker" placeholder="Search..."/>
-          </div>
+          </div>-->
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Get Quote Breakdown</b-button>
         </b-nav-form>
 
-        <Autocomplete></Autocomplete>
+
 
         <b-nav-item-dropdown right>
           <!-- Using button-content slot -->

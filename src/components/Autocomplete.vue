@@ -1,7 +1,9 @@
 <template>
   <div class="autocomplete">
-    <input type="text"
+    <input
+      type="text"
            v-model="search"
+      name="ticker"
            @input="onChange"
             placeholder="Search..."/>
     <ul v-show="isOpen" class="autocomplete-results">
@@ -126,6 +128,8 @@
     height: 120px;
     overflow: auto;
     background:white;
+    position:absolute;
+    z-index: 100;
   }
 
   .autocomplete-result {
