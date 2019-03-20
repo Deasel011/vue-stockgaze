@@ -10,12 +10,14 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-item href="/ipo">IPOs</b-nav-item>
 
-
         <b-nav-form inline action="/breakdown">
-          <b-form-input size="sm" class="mr-sm-2" type="text" name="ticker" placeholder="Ticker here"/>
+          <div class="autocomplete" style="width: 190px">
+            <b-form-input id="autocomplete_input" autocomplete="off" size="sm" class="mr-sm-2" type="text" name="ticker" placeholder="Search..."/>
+          </div>
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Get Quote Breakdown</b-button>
         </b-nav-form>
 
+        <Autocomplete></Autocomplete>
 
         <b-nav-item-dropdown right>
           <!-- Using button-content slot -->
@@ -46,10 +48,17 @@
 <script>
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
+  import Autocomplete from './Autocomplete'
 
   export default {
     name: 'TopBar',
-    props: ['profile']
+    components: {Autocomplete},
+    props: ['profile'],
+    data:function () {
+      return {
+        autocomplete_list:["hello","nice"]
+      }
+    }
   }
 </script>
 
@@ -86,5 +95,37 @@
     }
   }
 
+  .autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+  }
+
+  .autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+  }
+  .autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+  }
+  .autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+  }
 
 </style>
