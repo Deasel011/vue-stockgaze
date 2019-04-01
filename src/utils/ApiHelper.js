@@ -24,7 +24,7 @@ class ApiHelper {
 
   static GetSymbolSearchResult(searchTerm){
     if(searchTerm.length>1){
-      let url = 'https://stockgaze.search.windows.net/indexes/symbols-index/docs?api-version=2017-11-11&search='+searchTerm+'~&api-key=98C916CEB25B0E3B59C2D3D27E4074CE';
+      let url = 'https://stockgaze.search.windows.net/indexes/symbols-index/docs?api-version=2017-11-11&search='+searchTerm+'~&api-key=0A304B1E89432BC827DAE174E69D2B75';
       console.log(url);
       return axios.get(url);
     }
