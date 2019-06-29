@@ -164,7 +164,7 @@
         })
       },
       getBookData() {
-        this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/book', {}).then(json => {
+        this.$jsonp('https://cloud.iexapis.com/v1/stock/' + this.ticker + '/book?token=pk_61281448f86b46b1a024d88516d3e7db', {}).then(json => {
           this.quote = json.quote;
           this.bids = json.bids;
           this.asks = json.asks;
@@ -173,28 +173,28 @@
         })
       },
       getTickerLogoUrl() {
-        this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/logo', {}).then(json => {
+        this.$jsonp('https://cloud.iexapis.com/v1/stock/' + this.ticker + '/logo?token=pk_61281448f86b46b1a024d88516d3e7db', {}).then(json => {
           this.logo_url = json.url;
         }).catch(err => {
           return ""
         })
       },
       getCompanyData() {
-        this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/company', {}).then(json => {
+        this.$jsonp('https://cloud.iexapis.com/v1/stock/' + this.ticker + '/company?token=pk_61281448f86b46b1a024d88516d3e7db', {}).then(json => {
           this.company = json;
         }).catch(err => {
           alert("Could not get data " + err.toString())
         })
       },
       getFinancialsData() {
-        this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/financials', {}).then(json => {
+        this.$jsonp('https://cloud.iexapis.com/v1/stock/' + this.ticker + '/financials?token=pk_61281448f86b46b1a024d88516d3e7db', {}).then(json => {
           this.financials = json.financials;
         }).catch(err => {
           alert("Could not get data " + err.toString())
         })
       },
       getHistoricalData(range = "1m") {
-        this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/chart/' + range, {}).then(json => {
+        this.$jsonp('https://cloud.iexapis.com/v1/stock/' + this.ticker + '/chart/' + range+'?token=pk_61281448f86b46b1a024d88516d3e7db', {}).then(json => {
           this.historical = json;
 
           let ohlc = [],
@@ -298,7 +298,7 @@
         })
       },
       getDynamicData() {
-        this.$jsonp('https://api.iextrading.com/1.0/stock/' + this.ticker + '/chart/dynamic', {}).then(json => {
+        this.$jsonp('https://cloud.iexapis.com/v1/stock/' + this.ticker + '/chart/dynamic?token=pk_61281448f86b46b1a024d88516d3e7db', {}).then(json => {
           this.dynamic = json.data;
 
           let candles = [],
